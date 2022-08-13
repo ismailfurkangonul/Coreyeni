@@ -11,7 +11,7 @@ namespace Coreyeni.Data.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = BASB15;Database = EFCOREDB;Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer("Server = BASC11;Database = EFCOREDB;Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

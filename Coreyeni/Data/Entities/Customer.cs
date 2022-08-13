@@ -1,6 +1,8 @@
-﻿namespace Coreyeni.Data.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Coreyeni.Data.Entities
 {
-    public class Customer
+    public class Customer:DbContext
     {
         public int Id { get; set; } 
         public string Name { get; set; }    

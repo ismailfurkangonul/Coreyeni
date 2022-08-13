@@ -1,6 +1,8 @@
 ﻿using Coreyeni.Data.Contexts;
 using Coreyeni.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Coreyeni.Controllers
 {
@@ -10,13 +12,27 @@ namespace Coreyeni.Controllers
         
         public IActionResult Index()
         {
+            //create
             EFCoreContext context = new();
-            Product p = new Product();
-            p.Name = "Furkan";
-            p.Price = 12122;
-            context.Products.Add(p);
+            context.Products.Add(new Product { Name="Furkan",Price=30741});
             context.SaveChanges();
-            return View();
+
+            //read
+            List<Product> productList = context.Products.Where(x=>x.Price>301).ToList();
+
+            //update
+            Product updatedProduct = context.Products.Where(y => y.Id == 3).FirstOrDefault();
+            updatedProduct.Price = 301;
+            updatedProduct.Name = "testurunu";
+            context.Products.Update(updatedProduct);
+            context.SaveChanges();
+
+            //delete
+            List<Product> removedProduct = context.Products.Where(x => x.Name.Contains("u")).ToList();
+            context.Products.RemoveRange(removedProduct);
+            context.SaveChanges();
+
+            return View(productList);
         }
     }
 }
